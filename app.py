@@ -1,5 +1,10 @@
 import streamlit as st
 
+def load_css(file_name):
+    """Wczytuje plik CSS i dodaje go do aplikacji."""
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 def initialize_session_state():
     """Inicjalizacja stanu sesji."""
     if 'current_step' not in st.session_state:
@@ -138,6 +143,9 @@ def main():
         layout="wide",
         initial_sidebar_state="expanded"
     )
+    
+    # Wczytanie stylów CSS
+    load_css("style.css")
     
     # Inicjalizacja stanu sesji
     initialize_session_state()
