@@ -1,0 +1,45 @@
+/* Stylizacja zgodna z WCAG */
+
+/* Wysokie kontrasty dla lepszej czytelności */
+.stMarkdown {
+    color: #262730;
+}
+
+/* Fokus dla elementów interaktywnych */
+.stRadio > div > label:focus-within {
+    outline: 2px solid #1f77b4;
+    outline-offset: 2px;
+}
+
+.stButton > button:focus {
+    outline: 2px solid #1f77b4;
+    outline-offset: 2px;
+}
+
+/* Większe obszary klikalne */
+.stRadio > div > label {
+    padding: 8px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+/* Czytelne nagłówki */
+h1, h2, h3 {
+    color: #262730;
+    font-weight: 600;
+}
+
+/* Odpowiednie odstępy */
+.main .block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .main .block-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
