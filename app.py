@@ -57,6 +57,23 @@ def get_recommendation(answers):
                 'example': '<img src="important-text.png" alt="W dniach 1-4 września nasze biuro jest nieczynne.">',
                 'link': 'https://www.w3.org/WAI/tutorials/images/textual/'
             }
+        elif answers.get('text_function') == 'etykieta_tekstowa':
+            if answers.get('link_button') == 'tak':
+                return {
+                    'title': 'Przepisz dokładnie etykietę do atrybutu alt',
+                    'description': 'Jeśli grafika jest etykietą tekstową i jest używana jako link lub przycisk, wartość atrybutu alt powinna być dokładnie taka sama jak tekst na grafice.',
+                    'category': 'Obrazy tekstowe (etykieta w linku/przycisku)',
+                    'example': '<a href="bip.html"><img src="bip.png" alt="BIP"></a>',
+                    'link': 'https://www.w3.org/WAI/tutorials/images/functional/'
+                }
+            else:
+                return {
+                    'title': 'Dodaj tekst z grafiki jako alt',
+                    'description': 'Jeśli grafika jest etykietą tekstową, np. "BIP", użyj tego tekstu jako wartości atrybutu alt.',
+                    'category': 'Obrazy tekstowe (etykieta)',
+                    'example': '<img src="bip.png" alt="BIP">',
+                    'link': 'https://www.w3.org/WAI/tutorials/images/textual/'
+                }
     
     # Kontynuuj jeśli obraz nie zawiera tekstu
     if answers.get('contains_text') == 'nie':
@@ -229,7 +246,8 @@ def main():
                 "tekst_obok - tekst jest także obecny jako prawdziwy tekst w pobliżu",
                 "efekt_wizualny - tekst jest pokazywany tylko dla efektów wizualnych, na przykład stos książek z tytułami na grzbietach", 
                 "funkcja_specyficzna - tekst ma specyficzną funkcję (np. ikona)",
-                "tekst_niedostepny - tekst z obrazu nie jest dostępny w tekście obok"
+                "tekst_niedostepny - tekst z obrazu nie jest dostępny w tekście obok",
+                "etykieta_tekstowa - grafika jest etykietą tekstową, na przykład 'BIP'"
             ]
         )
         
