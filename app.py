@@ -339,11 +339,6 @@ def main():
                 if rec['link']:
                     st.markdown(f"[📚 Więcej informacji]({rec['link']})")
             
-            with col2:
-                st.markdown("### 📋 Podsumowanie odpowiedzi")
-                for key, value in st.session_state.answers.items():
-                    st.markdown(f"**{key}:** {value}")
-            
             # Przycisk do rozpoczęcia od nowa
             if st.button("🔄 Analizuj kolejny obraz", type="primary"):
                 reset_decision_tree()
