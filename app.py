@@ -54,7 +54,7 @@ def get_recommendation(answers):
                 'title': 'Dodaj tekst z obrazu do alt',
                 'description': 'Gdy tekst z obrazu nie jest dostępny w innej formie, użyj atrybutu alt do włączenia tekstu z obrazu.',
                 'category': 'Obrazy tekstowe',
-                'example': '<img src="important-text.png" alt="Ważna informacja o dostępności">',
+                'example': '<img src="important-text.png" alt="W dniach 1-4 września nasze biuro jest nieczynne.">',
                 'link': 'https://www.w3.org/WAI/tutorials/images/textual/'
             }
     
@@ -89,7 +89,7 @@ def get_recommendation(answers):
             elif answers.get('image_type') == 'redundantny':
                 return {
                     'title': 'Użyj pustego atrybutu alt',
-                    'description': 'Gdy obraz pokazuje treść redundantną do tekstu w pobliżu, użyj pustego atrybutu alt="".',
+                    'description': 'Gdy obraz pokazuje taką samą treść, co tekst w pobliżu, użyj pustego atrybutu alt="".',
                     'category': 'Obrazy funkcjonalne (redundantne)',
                     'example': '<img src="logo.png" alt="">',
                     'link': 'https://www.w3.org/WAI/tutorials/images/functional/'
@@ -98,7 +98,7 @@ def get_recommendation(answers):
         if answers.get('contributes_meaning') == 'nie' and answers.get('decorative') == 'tak':
             return {
                 'title': 'Użyj pustego atrybutu alt',
-                'description': 'Dla obrazów czysto dekoracyjnych lub nieprzeznaczonych dla użytkowników, użyj pustego atrybutu alt="".',
+                'description': 'Dla obrazów czysto dekoracyjnych lub nie przeznaczonych do oglądania przez użytkowników, użyj pustego atrybutu alt="".',
                 'category': 'Obrazy dekoracyjne',
                 'example': '<img src="decoration.png" alt="">',
                 'link': 'https://www.w3.org/WAI/tutorials/images/decorative/'
@@ -106,7 +106,7 @@ def get_recommendation(answers):
     
     # Domyślna rekomendacja
     return {
-        'title': 'Skonsultuj się z dokumentacją',
+        'title': 'Przeczytaj dokumentację i zdecyduj',
         'description': 'To drzewo decyzji nie obejmuje wszystkich przypadków. Aby uzyskać szczegółowe informacje o dostarczaniu alternatyw tekstowych, zapoznaj się z samouczkiem dotyczącym obrazów.',
         'category': 'Przypadek nieobjęty',
         'example': '',
@@ -224,12 +224,12 @@ def main():
     elif st.session_state.current_step == 'text_function':
         answer = render_question(
             "text_function",
-            "Jak funkcjonuje tekst w obrazie?",
+            "Czym jest ten tekst w obrazie?",
             [
                 "tekst_obok - tekst jest także obecny jako prawdziwy tekst w pobliżu",
-                "efekt_wizualny - tekst jest pokazywany tylko dla efektów wizualnych", 
+                "efekt_wizualny - tekst jest pokazywany tylko dla efektów wizualnych, na przykład stos książek z tytułami na grzbietach", 
                 "funkcja_specyficzna - tekst ma specyficzną funkcję (np. ikona)",
-                "tekst_niedostepny - tekst z obrazu nie jest dostępny w innej formie"
+                "tekst_niedostepny - tekst z obrazu nie jest dostępny w tekście obok"
             ]
         )
         
@@ -242,7 +242,7 @@ def main():
     elif st.session_state.current_step == 'link_button':
         answer = render_question(
             "link_button",
-            "Czy obraz jest używany w linku lub przycisku i czy trudno byłoby zrozumieć, co robi link/przycisk bez tego obrazu?",
+            "Czy obraz jest używany w linku lub przycisku?",
             ["tak", "nie"]
         )
         
@@ -258,7 +258,7 @@ def main():
     elif st.session_state.current_step == 'contributes_meaning':
         answer = render_question(
             "contributes_meaning",
-            "Czy obraz dodaje znaczenie do bieżącej strony lub kontekstu?",
+            "Czy obraz dodaje jakieś informacje, których nie ma w tekście obok?",
             ["tak", "nie"]
         )
         
@@ -273,11 +273,11 @@ def main():
     elif st.session_state.current_step == 'image_type':
         answer = render_question(
             "image_type",
-            "Jaki typ obrazu to jest?",
+            "Jaki to jest rodzaj obrazu?",
             [
                 "prosta_grafika - prosta grafika lub fotografia",
                 "graf_zlozony - wykres lub złożona informacja",
-                "redundantny - pokazuje treść redundantną do tekstu w pobliżu"
+                "powtórzony - pokazuje treść powtarzającą informacje z tekstu w pobliżu"
             ]
         )
         
